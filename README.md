@@ -1,1 +1,1 @@
-# NER-and-Linking-of-Ancient-and-Historic-Places
+# NER and Linking of Ancient and Historic Places
