@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>NER and Linking of Ancient and Historic Places</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+
+    <script src='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet'/>
+
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">NER and Linking of Ancient and Historic Places</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Place Information<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+            </li>
+        </ul>
+    </div>
+</nav>
+<br/>
+<br/>
+
+<div class="jumbotron jumbotron-fluid">
+    <div class="container">
+        <h1 class="display-4">{{title}}</h1>
+        <p class="lead">{{description}}</p>
+    </div>
+</div>
+
+<div id="content">
+    <div class="row">
+        <div class="col-md-7">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="lead">Locations</p>
+                    {% for eachloc in locations%}
+                    <div class="col-md-12 col-md-offset-6">
+                        <a class="badge badge-light" href="javascript:openNewWin(&quot;{{eachloc['link']}}&quot;)"><font
+                                size="3">{{eachloc['title']}}</font></a>
+                        <span class="badge badge-pill badge-secondary" class="font-italic"><font size=2>{{eachloc["snippet"].split(';')[-1]}}</font></span>
+                        <br/>
+                    </div>
+                    {% endfor%}
+
+                </li>
+                <li class="list-group-item">
+                    <p class="lead">Names</p>
+                    {% for each in names%}
+                    <div class="col-md-12 col-md-offset-6">
+                        <a class="badge badge-light" href="javascript:openNewWin(&quot;{{each['uri']}}&quot;)"><font
+                                size="3">{{each["romanized"]}}</font></a>
+                        <a class="font-italic"><font size=2>{{each["snippet"]}}</font></a>
+                        <br/>
+                    </div>
+                    {% endfor%}
+                </li>
+                <li class="list-group-item">
+                    <p class="lead">Makes Connections With</p>
+                    {% for each in connect_with%}
+                    <div class="col-md-12 col-md-offset-6">
+                        <a class="badge badge-light"
+                           href="javascript:openNewWin(&quot;{{each['connectsTo']}}&quot;)"><font size="3">{{each["title"]}}</font></a>
+                        <a class="font-italic badge badge-secondary"
+                           href="javascript:openNewWin(&quot;{{each['uri']}}&quot;)"><font size=1>Relations</font></a>
+                        <br/>
+                    </div>
+                    {% endfor%}
+                </li>
+                <li class="list-group-item">
+                    <p class="lead">Receives Connections From</p>
+                    {% for each in receieve_connections%}
+                    <div class="col-md-12 col-md-offset-6">
+                        <a class="badge badge-light" href="javascript:openNewWin(&quot;{{each['link']}}&quot;)"><font
+                                size="3">{{each["title"]}}</font></a>
+                        <a class="font-italic badge badge-secondary"
+                           href="javascript:openNewWin(&quot;{{each['connections']}}&quot;)"><font
+                                size=1>Relations</font></a>
+                        <br/>
+                    </div>
+                    {% endfor%}
+                </li>
+                <li class="list-group-item">
+                    <p class="lead">Initial Provenance</p>
+                    <div class="col-md-12 col-md-offset-6">
+                        <a class="lead"><font size="3">{{provenance}}</font></a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-5">
+            <div id="map" style='width: 500px; height: 300px;'></div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">
+                    <p class="lead">Place Type</p>
+                    <div class="col-md-12 col-md-offset-6">
+                        {% for each in place_type%}
+                        <a class="lead"><font size="3">{{each}}</font></a>
+                        <br/>
+                        {% endfor %}
+                    </div>
+                </li>
+                <li class="list-group-item">
+                    <p class="lead">Reference</p>
+                    {% if citesAsEvidence|length > 0 %}
+                    <a class="lead font-italic"><font size="3">Evidence:</font></a>
+                    <br/>
+                    {% for each in citesAsEvidence %}
+                    <a href="javascript:openNewWin(&quot;{{each['accessURI']}}&quot;)"><font size="1">{{each["shortTitle"]}} {{each["citationDetail"]}}</font></a>
+                    <br/>
+                    {% endfor %}
+                    {%endif %}
+                    {% if seeFurther|length > 0 %}
+                    <a class="lead font-italic"><font size="3">See further:</font></a>
+                    <br/>
+                    {% for each in seeFurther %}
+                    <a href="javascript:openNewWin(&quot;{{each['accessURI']}}&quot;)"><font size="1">{{each["shortTitle"]}} {{each["citationDetail"]}}</font></a>
+                    <br/>
+                    {% endfor %}
+                    {%endif %}
+                    {% if seeAlso|length > 0 %}
+                    <a class="lead font-italic"><font size="3">See Also:</font></a>
+                    <br/>
+                    {% for each in seeAlso %}
+                    <a href="javascript:openNewWin(&quot;{{each['accessURI']}}&quot;)"><font size="1">{{each["shortTitle"]}} {{each["citationDetail"]}}</font></a>
+                    <br/>
+                    {% endfor %}
+                    {%endif %}
+                    {% if citesAsRelated|length > 0 %}
+                    <a class="lead font-italic"><font size="3">Related:</font></a>
+                    <br/>
+                    {% for each in citesAsRelated %}
+                    <a href="javascript:openNewWin(&quot;{{each['accessURI']}}&quot;)"><font size="1">{{each["shortTitle"]}} {{each["citationDetail"]}}</font></a>
+                    <br/>
+                    {% endfor %}
+                    {%endif %}
+                </li>
+            </ul>
+
+        </div>
+
+        <script>
+            mapboxgl.accessToken = 'pk.eyJ1IjoibGFtaGFycmlzb24iLCJhIjoiY2s4NTBqM2JzMDF0YjNubzd5cmw4c20ydiJ9.ws7Yzl9-ZTLSS0gwcJi6cA';
+            var map = new mapboxgl.Map({
+                container: 'map',
+                style: 'mapbox://styles/lamharrison/ckbxqzvkj299x1hquq5k53zyi',
+                center: ['{{geoloc[0]}}', '{{geoloc[1]}}'],
+                zoom: 8
+            });
+
+            var marker = new mapboxgl.Marker()
+                .setLngLat(['{{geoloc[0]}}', '{{geoloc[1]}}'])
+                .addTo(map);
+        </script>
+
+    </div>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+
+
+<script type="text/javascript">
+    function openNewWin(url, title) {
+        window.open(url, title);
+    }
+</script>
+
+</body>
+<!-- Site footer -->
+<footer class="site-footer">
+    <p class="copyright-text" align="center"><font size=1>Copyright &copy; 2020 All Rights Reserved by
+        <a><font color="#000080">Dr Andreas Vlachidis, Zhishu Lin, University College London</font></a>.
+    </font>
+    </p>
+</footer>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>NER and Linking of Ancient and Historic Places</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+    <a class="navbar-brand" href="/">NER and Linking of Ancient and Historic Places</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+            aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+            </li>
+        </ul>
+    </div>
+</nav>
+<br/>
+<br/>
+<br/>
+<div class="container">
+
+    <form method="POST" action="/process">
+        <div class="form-group">
+            <button type="button" class="btn btn-secondary btn-xs" disabled>Your Text</button>
+            <br/>
+            <textarea type="text" rows="8" cols="8" id="rawtext" class="form-control" name="rawtext" required="true"
+                      placeholder="Enter your historical text here."></textarea>
+            <br/>
+            <div align="right">
+                <button type="reset" class="btn btn-outline-dark"><i class="fa fa-eraser"></i> Clear</button>
+                <button type="submit" class="btn btn-outline-info"><i class="fa fa-check-square"></i> Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<div class="container">
+    <button type="button" class="btn btn-info btn-xs" disabled>Result</button>
+    <div class="alert alert-info" role="alert">
+
+        <p>{{alert_result_word}} <font size="5"><span class="badge badge-secondary">{{num_of_results}}</span></font></p>
+
+        <ul>
+            {% for i in results %}
+            <li>
+                <form id="{{i['id']}}" method="post" action="/place_info">
+                    <input type="hidden" name="place_name" value="{{i['id']}}"/>
+                    <button type="button" class="btn btn-info btn-xs"
+                            onclick=submit_id("{{i['id']}}")> {{i['text']}}
+                    </button>
+                </form>
+            </li>
+            {%endfor%}
+        </ul>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+        integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+        crossorigin="anonymous"></script>
+<script>
+     function submit_id(id) {
+        document.getElementById(id).submit();
+    }
+</script>
+</body>
+<!-- Site footer -->
+<footer class="site-footer">
+    <p class="copyright-text" align="center"><font size=1>Copyright &copy; 2020 All Rights Reserved by
+        <a><font color="#000080">Dr Andreas Vlachidis, Zhishu Lin, University College London</font></a>.
+    </font>
+    </p>
+</footer>
+
+<script type="text/javascript">
+    function openNewWin(url, title) {
+        window.open(url, title);
+    }
+</script>
+
+</html>
