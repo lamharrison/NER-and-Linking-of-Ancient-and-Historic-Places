@@ -159,10 +159,10 @@
         </div>
 
         <script>
-            mapboxgl.accessToken = 'pk.eyJ1IjoibGFtaGFycmlzb24iLCJhIjoiY2s4NTBqM2JzMDF0YjNubzd5cmw4c20ydiJ9.ws7Yzl9-ZTLSS0gwcJi6cA';
+            mapboxgl.accessToken = '{{mapbox_tokens["access_token"]}}';
             var map = new mapboxgl.Map({
                 container: 'map',
-                style: 'mapbox://styles/lamharrison/ckbxqzvkj299x1hquq5k53zyi',
+                style: '{{mapbox_tokens["map_api"]}}',
                 center: ['{{geoloc[0]}}', '{{geoloc[1]}}'],
                 zoom: 8
             });

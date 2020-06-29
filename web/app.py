@@ -87,17 +87,32 @@ def place_info():
 
         url = 'http://pleiades.stoa.org/places/{}/json'.format(id)
         read_data = read_url_to_json(url)
+
+        #  get place description
         description = read_data["description"]
+
+        # get place name title
         name = read_data["title"]
+
+        # get geo locations
         geoloc = read_data["reprPoint"]
+
+        # get locations data
         locations = [item['properties'] for item in read_data["features"]]
+
+        # get place names in history
         names = [item for item in read_data["names"]]
+
+        # get all the connections
         connect_with = [item for item in read_data["connections"]]
 
         receieve_url = 'http://pleiades.stoa.org/places/{}'.format(id)
         receieve_connections = extract_receive_connections(receieve_url)
 
+        # get place types
         place_type = read_data["placeTypes"]
+
+        # get provenance
         provenance = read_data["provenance"]
 
         # reference
@@ -116,11 +131,16 @@ def place_info():
             elif each["type"] == 'citesAsRelated' and (each["citationDetail"] != "" or each["shortTitle"] != ""):
                 citesAsRelated.append(each)
 
+        # enter your mapbox api here to use map
+        mapbox_tokens = {
+            'access_token': 'pk.eyJ1IjoibGFtaGFycmlzb24iLCJhIjoiY2s4NTBqM2JzMDF0YjNubzd5cmw4c20ydiJ9.ws7Yzl9-ZTLSS0gwcJi6cA',
+            'map_api': 'mapbox://styles/lamharrison/ckbxqzvkj299x1hquq5k53zyi'}
+
     return render_template("place_info.html", title=name, id=id, description=description, geoloc=geoloc,
                            locations=locations, names=names, connect_with=connect_with,
                            receieve_connections=receieve_connections, place_type=place_type,
                            provenance=provenance, seeFurther=seeFurther, citesAsEvidence=citesAsEvidence,
-                           seeAlso=seeAlso, citesAsRelated=citesAsRelated)
+                           seeAlso=seeAlso, citesAsRelated=citesAsRelated, mapbox_tokens=mapbox_tokens)
 
 
 if __name__ == '__main__':
