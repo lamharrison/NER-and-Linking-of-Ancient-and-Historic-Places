@@ -86,13 +86,13 @@ python app.py
 ## Usage
 
 When enter the localhost web application, it should be looked like this.    
-<div align=center><img width=50% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/mainpage.png"/></div>  
+<div align=center><img width=70% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/mainpage.png"/></div>  
         
 After entering your historical text, click on submit button, results come out.  
-<div align=center><img width=50% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/results.png"/></div>
+<div align=center><img width=70% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/results.png"/></div>
 
 Click on place names recognized, it would jump to place information details page.
-<div align=center><img width=50% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/place_information.png"/></div>
+<div align=center><img width=70% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/place_information.png"/></div>
 
 
 **[Back to top](#table-of-contents)**
