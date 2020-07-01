@@ -24,7 +24,7 @@ This project is a web application that can recognize historical places names
  in a text. User can click on the recognized results and find out completed details 
  of each historical place recognized.   
     
- All dataset is from Pleiades,  At present, it has extensive coverage for the Greek and Roman world, and is expanding into Ancient Near Eastern, Byzantine, Celtic, Early Islamic, and Early Medieval geography.    
+ All dataset are from Pleiades,  At present, it has extensive coverage for the Greek and Roman world, and is expanding into Ancient Near Eastern, Byzantine, Celtic, Early Islamic, and Early Medieval geography.    
     
  This project includes:
 
