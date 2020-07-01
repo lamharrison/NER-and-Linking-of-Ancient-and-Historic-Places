@@ -6,7 +6,7 @@ from spacy import displacy
 import en_core_web_sm
 import json
 
-nlp = spacy.load('./ancient_place_model')
+nlp = spacy.load('.,/ancient_place_model')
 
 app = Flask(__name__)
 
