@@ -121,7 +121,7 @@ We encourage public contributions! Please review [CODE_OF_CONDUCT.md](https://gi
 
 Copyright (c) 2020 Dr. Andreas Vlachidis, Zhishu Lin.
 
-This project is licensed under the BSD 3-Clause License - see [LICENSE.md](https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/LICENSE) file for details.    
+This project is licensed under the MIT license - see [LICENSE.md](https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/LICENSE) file for details.    
 
 
 **[Back to top](#table-of-contents)**
