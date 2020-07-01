@@ -56,7 +56,7 @@ python 3.7
 
 This project mainly used Spacy and Flask for external libraries.  
     
-More others details see `requirements.txt`.
+More others details see [requirements.txt](https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/requirements.txt).
 
 ## Getting the Source
 
@@ -105,7 +105,7 @@ Provide any instructions or contact information for users who need to get furthe
 
 # Contributing
 
-We encourage public contributions! Please review [CODE_OF_CONDUCT.md](docs/CONTRIBUTING.md) for details on our code of conduct and development process.
+We encourage public contributions! Please review [CODE_OF_CONDUCT.md](https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/CODE_OF_CONDUCT.md) for details on our code of conduct and development process.
 
 **[Back to top](#table-of-contents)**
 
@@ -121,7 +121,7 @@ We encourage public contributions! Please review [CODE_OF_CONDUCT.md](docs/CONTR
 
 Copyright (c) 2020 Dr. Andreas Vlachidis, Zhishu Lin.
 
-This project is licensed under the BSD 3-Clause License - see [LICENSE.md](LICENSE.md) file for details.    
+This project is licensed under the BSD 3-Clause License - see [LICENSE.md](https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/LICENSE) file for details.    
 
 
 **[Back to top](#table-of-contents)**
