@@ -57,7 +57,7 @@ decorator==4.4.0
 defusedxml==0.6.0
 distributed==2.1.0
 dj-database-url==0.5.0
-Django==2.1.15
+Django==2.2.13
 django-filter==2.2.0
 djangorestframework==3.11.0
 docopt==0.6.2
