@@ -101,7 +101,7 @@ Version 1.0.0.
 
 # How to Get Help
 
-Provide any instructions or contact information for users who need to get further help with your project.
+Please post on issues section if you need any helps.
 
 # Contributing
 
