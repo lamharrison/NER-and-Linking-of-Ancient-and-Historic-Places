@@ -109,10 +109,10 @@ We encourage public contributions! Please review [CODE_OF_CONDUCT.md](https://gi
 
 **[Back to top](#table-of-contents)**
 
-# Further Reading
+# Further Reading and References
 
 [Pleiades](https://pleiades.stoa.org/)  
-[flask](https://flask.palletsprojects.com/en/1.1.x/)    
+[Flask](https://flask.palletsprojects.com/en/1.1.x/)    
 [Spacy](https://spacy.io/)  
 
 **[Back to top](#table-of-contents)**
