@@ -5,4 +5,10 @@ spacy_lookup
 Flask
 gunicorn
 spacy
-beautifulsoup4
+bs4
+urllib3
+Flask-RESTful
+itsdangerous
+Jinja2
+peewee
+Werkzeug
