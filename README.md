@@ -60,8 +60,6 @@ More others details see `requirements.txt`.
 
 ## Getting the Source
 
-Include a link to your GitHub repository (you have no idea how people will find your code), and also a summary of how to clone.
-
 This project is [hosted on GitHub](https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places.git). You can clone this project directly using this command:
 
 ```
