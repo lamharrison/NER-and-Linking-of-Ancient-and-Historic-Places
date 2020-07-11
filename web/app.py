@@ -1,6 +1,7 @@
 from flask import Flask, render_template, url_for, request
 import spacy
 import json
+from spacy import displacy
 
 nlp = spacy.load('./ancient_place_model')
 
@@ -19,6 +20,7 @@ def process():
     if request.method == 'POST':
         rawtext = request.form['rawtext']
         doc = nlp(rawtext)
+        render_text_code_html = displacy.render(doc, style="ent")
         results = []
 
         for ent in doc.ents:
@@ -32,8 +34,9 @@ def process():
 
         num_of_results = len(non_repeat_temp)
 
+
     return render_template("index.html", results=non_repeat_temp, num_of_results=num_of_results,
-                           alert_result_word=alert_result_word)
+                           alert_result_word=alert_result_word, render_text_code_html=render_text_code_html)
 
 
 def read_url_to_json(url):
@@ -140,4 +143,4 @@ def place_info():
 
 
 if __name__ == '__main__':
-    app.run(debug=False)
+    app.run(debug=True)

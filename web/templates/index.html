@@ -58,7 +58,8 @@
 <div class="container">
     <button type="button" class="btn btn-info btn-xs" disabled>Result</button>
     <div class="alert alert-info" role="alert">
-
+       {{render_text_code_html| safe}}
+    <br/>
         <p>{{alert_result_word}} <font size="5"><span class="badge badge-secondary">{{num_of_results}}</span></font></p>
 
         <ul>
@@ -89,6 +90,13 @@
     function submit_id(id) {
         document.getElementById(id).submit();
     }
+</script>
+
+<script>
+function insert(text){
+   var insertText = text;
+   document.getElementById("html").innerHTML(insertText);
+}
 </script>
 </body>
 <!-- Site footer -->
