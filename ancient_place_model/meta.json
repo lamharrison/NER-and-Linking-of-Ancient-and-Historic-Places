@@ -1,0 +1,1 @@
+{"lang":"en","name":"ancient_places","version":"0.0.0","spacy_version":">=2.2.4","description":"","author":"","email":"","url":"","license":"","vectors":{"width":0,"vectors":0,"keys":0,"name":null},"pipeline":["entity_ruler"],"factories":{"entity_ruler":"entity_ruler"},"labels":{"entity_ruler":["ANC-LOC"]}}
