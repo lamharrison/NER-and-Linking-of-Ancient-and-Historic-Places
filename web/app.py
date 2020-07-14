@@ -20,7 +20,10 @@ def process():
     if request.method == 'POST':
         rawtext = request.form['rawtext']
         doc = nlp(rawtext)
-        render_text_code_html = displacy.render(doc, style="ent")
+        # make it colorful
+        colors = {"ANC-LOC": "linear-gradient(90deg, #aa9cfc, #fc9ce7)"}
+        options = {"ents": ["ANC-LOC"], "colors": colors}
+        render_text_code_html = displacy.render(doc, style="ent", options=options)
         results = []
 
         for ent in doc.ents:
