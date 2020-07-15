@@ -21,7 +21,7 @@ def process():
         rawtext = request.form['rawtext']
         doc = nlp(rawtext)
         # make it colorful
-        colors = {"ANC-LOC": "linear-gradient(90deg, #aa9cfc, #fc9ce7)"}
+        colors = {"ANC-LOC": "linear-gradient(90deg, #0cebeb, #20e3b2, #29ffc6)"}
         options = {"ents": ["ANC-LOC"], "colors": colors}
         render_text_code_html = displacy.render(doc, style="ent", options=options)
         results = []
@@ -36,7 +36,6 @@ def process():
                 non_repeat_temp.append(item)
 
         num_of_results = len(non_repeat_temp)
-
 
     return render_template("index.html", results=non_repeat_temp, num_of_results=num_of_results,
                            alert_result_word=alert_result_word, render_text_code_html=render_text_code_html)
