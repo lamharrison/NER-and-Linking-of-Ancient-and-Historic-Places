@@ -14,6 +14,31 @@
         }
 
     </style>
+    <script>
+        function setDivCenter(divName) {
+            var top = ($(window).height() - $(divName).height()) / 2;
+            var left = ($(window).width() - $(divName).width()) / 2;
+            var scrollTop = $(document).scrollTop();
+            var scrollLeft = $(document).scrollLeft();
+            $(divName).css({
+                'z-index': 3,
+                position: 'absolute',
+                'top': top + scrollTop,
+                left: left + scrollLeft
+            }).show();
+        }
+    </script>
+    <script>
+        var isPageHide = false;
+        window.addEventListener('pageshow', function () {
+            if (isPageHide) {
+                $('#loading').hide();
+            }
+        });
+        window.addEventListener('pagehide', function () {
+            isPageHide = true;
+        });
+    </script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
@@ -49,17 +74,26 @@
             <br/>
             <div align="right">
                 <button type="reset" class="btn btn-outline-dark"><i class="fa fa-eraser"></i> Clear</button>
-                <button type="submit" class="btn btn-outline-info"><i class="fa fa-check-square"></i> Submit</button>
+                <button type="submit" class="btn btn-outline-info" onclick="setDivCenter('#loading')"><i
+                        class="fa fa-check-square"></i> Submit
+                </button>
             </div>
         </div>
     </form>
 </div>
 
+
+<div id="loading" class="spinner-grow text-info" role="status" style="display:none;width: 3rem; height: 3rem;"
+     align="center">
+    <span class="sr-only">Loading...</span>
+</div>
+
+
 <div class="container">
     <button type="button" class="btn btn-info btn-xs" disabled>Result</button>
     <div class="alert alert-info" role="alert">
-       {{render_text_code_html| safe}}
-    <br/>
+        {{render_text_code_html| safe}}
+        <br/>
         <p>{{alert_result_word}} <font size="5"><span class="badge badge-secondary">{{num_of_results}}</span></font></p>
 
         <ul>
@@ -68,7 +102,7 @@
                 <form id="{{i['id']}}" method="post" action="/place_info">
                     <input type="hidden" name="place_name" value="{{i['id']}}"/>
                     <button type="button" class="btn btn-info btn-xs"
-                            onclick=submit_id("{{i['id']}}")> {{i['text']}}
+                            onclick=setDivCenter('#loading');submit_id("{{i['id']}}");> {{i['text']}}
                     </button>
                 </form>
             </li>
@@ -93,10 +127,10 @@
 </script>
 
 <script>
-function insert(text){
-   var insertText = text;
-   document.getElementById("html").innerHTML(insertText);
-}
+    function insert(text) {
+        var insertText = text;
+        document.getElementById("html").innerHTML(insertText);
+    }
 </script>
 </body>
 <!-- Site footer -->
