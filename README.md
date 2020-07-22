@@ -2,7 +2,7 @@
 
 # NER and Linking of Ancient and Historic Places
 
-A Named-entity Recognition tool that can recognize historical places names in a text.
+An Named-entity Recognition tool that can recognize historical places names in a text.
 
 
 ## Table of Contents
