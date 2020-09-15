@@ -1,5 +1,3 @@
-<div align=left><img width=20% src="https://github.com/lamharrison/NER-and-Linking-of-Ancient-and-Historic-Places/blob/master/asset/logo.png"/></div>
-
 # NER and Linking of Ancient and Historic Places
 
 An Named-entity Recognition tool that can recognize historical places names in a text.
